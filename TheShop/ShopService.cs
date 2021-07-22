@@ -93,39 +93,6 @@ namespace TheShop
 		}
 	}
 
-	//in memory implementation
-	public class DatabaseDriver
-	{
-		private List<Article> _articles = new List<Article>();
-
-		public Article GetById(int id)
-		{
-            return _articles.Single(x => x.ID == id);
-		}
-
-		public void Save(Article article)
-		{
-			_articles.Add(article);
-		}
-	}
-
-	public class Logger
-	{
-		public void Info(string message)
-		{
-			Console.WriteLine("Info: " + message);
-		}
-
-		public void Error(string message)
-		{
-			Console.WriteLine("Error: " + message);
-		}
-
-		public void Debug(string message)
-		{
-			Console.WriteLine("Debug: " + message);
-		}
-	}
 
 	public class Supplier1
 	{
@@ -179,19 +146,6 @@ namespace TheShop
 				ArticlePrice = 460
 			};
 		}
-	}
-
-	public class Article
-	{
-		public int ID { get; set; }
-
-		public string Name_of_article { get; set; }
-
-		public int ArticlePrice { get; set; }
-		public bool IsSold { get; set; }
-
-		public DateTime SoldDate { get; set; }
-		public int BuyerUserId { get; set; }
 	}
 
 }
