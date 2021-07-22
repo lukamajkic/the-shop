@@ -9,17 +9,17 @@ namespace TheShop
 		private DatabaseDriver DatabaseDriver;
 		private Logger logger;
 
-		private Supplier1 Supplier1;
-		private Supplier2 Supplier2;
-		private Supplier3 Supplier3;
+		private Supplier Supplier1;
+		private Supplier Supplier2;
+		private Supplier Supplier3;
 		
 		public ShopService()
 		{
 			DatabaseDriver = new DatabaseDriver();
 			logger = new Logger();
-			Supplier1 = new Supplier1();
-			Supplier2 = new Supplier2();
-			Supplier3 = new Supplier3();
+			Supplier1 = new Supplier(1,458);
+			Supplier2 = new Supplier(1,459);
+			Supplier3 = new Supplier(1,460);
 		}
 
 		public void OrderAndSellArticle(int id, int maxExpectedPrice, int buyerId)
@@ -90,61 +90,6 @@ namespace TheShop
 		public Article GetById(int id)
 		{
 			return DatabaseDriver.GetById(id);
-		}
-	}
-
-
-	public class Supplier1
-	{
-		public bool ArticleInInventory(int id)
-		{
-			return true;
-		}
-
-		public Article GetArticle(int id)
-		{
-			return new Article()
-			{
-				ID = 1,
-				Name_of_article = "Article from supplier1",
-				ArticlePrice = 458
-			};
-		}
-	}
-
-	public class Supplier2
-	{
-		public bool ArticleInInventory(int id)
-		{
-			return true;
-		}
-
-		public Article GetArticle(int id)
-		{
-			return new Article()
-			{
-				ID = 1,
-				Name_of_article = "Article from supplier2",
-				ArticlePrice = 459
-			};
-		}
-	}
-
-	public class Supplier3
-	{
-		public bool ArticleInInventory(int id)
-		{
-			return true;
-		}
-
-		public Article GetArticle(int id)
-		{
-			return new Article()
-			{
-				ID = 1,
-				Name_of_article = "Article from supplier3",
-				ArticlePrice = 460
-			};
 		}
 	}
 
