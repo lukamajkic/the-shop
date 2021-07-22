@@ -12,8 +12,8 @@ namespace TheShop
         private readonly int _articlePrice;
         public Supplier(int supplierNumber, int articlePrice)
         {
-            this._supplierNumber = supplierNumber;
-            this._articlePrice = articlePrice;
+            _supplierNumber = supplierNumber;
+            _articlePrice = articlePrice;
         }
         public bool ArticleInInventory(int id)
         {

@@ -6,18 +6,18 @@ namespace TheShop
 {
 	public class ShopService
 	{
-		private DatabaseDriver DatabaseDriver;
-		private Logger logger;
+		private DatabaseDriver _databaseDriver;
+		private Logger _logger;
 
 		private Supplier Supplier1;
 		private Supplier Supplier2;
 		private Supplier Supplier3;
 		
-		public ShopService()
+		public ShopService(DatabaseDriver databaseDriver, Logger logger)
 		{
-			DatabaseDriver = new DatabaseDriver();
-			logger = new Logger();
-			Supplier1 = new Supplier(1,458);
+            _databaseDriver = databaseDriver;
+            _logger = logger;
+            Supplier1 = new Supplier(1,458);
 			Supplier2 = new Supplier(1,459);
 			Supplier3 = new Supplier(1,460);
 		}
@@ -64,7 +64,7 @@ namespace TheShop
 				throw new Exception("Could not order article");
 			}
 
-			logger.Debug("Trying to sell article with id=" + id);
+			_logger.Debug("Trying to sell article with id=" + id);
 
 			article.IsSold = true;
 			article.SoldDate = DateTime.Now;
@@ -72,12 +72,12 @@ namespace TheShop
 			
 			try
 			{
-				DatabaseDriver.Save(article);
-				logger.Info("Article with id=" + id + " is sold.");
+				_databaseDriver.Save(article);
+				_logger.Info("Article with id=" + id + " is sold.");
 			}
 			catch (ArgumentNullException ex)
 			{
-				logger.Error("Could not save article with id=" + id);
+				_logger.Error("Could not save article with id=" + id);
 				throw new Exception("Could not save article with id");
 			}
 			catch (Exception)
@@ -89,7 +89,7 @@ namespace TheShop
 
 		public Article GetById(int id)
 		{
-			return DatabaseDriver.GetById(id);
+			return _databaseDriver.GetById(id);
 		}
 	}
 
