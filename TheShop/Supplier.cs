@@ -10,21 +10,23 @@ namespace TheShop
     {
         private readonly int _supplierNumber;
         private readonly int _articlePrice;
-        public Supplier(int supplierNumber, int articlePrice)
+        private readonly int _articleId;
+        public Supplier(int supplierNumber, int articlePrice, int articleId)
         {
             _supplierNumber = supplierNumber;
             _articlePrice = articlePrice;
+            _articleId = articleId;
         }
         public bool ArticleInInventory(int id)
         {
-            return true;
+            return _articleId == id;
         }
 
         public Article GetArticle(int id)
         {
             return new Article()
             {
-                ID = 1,
+                ID = _articleId,
                 Name_of_article = "Article from supplier" + _supplierNumber,
                 ArticlePrice = _articlePrice
             };
