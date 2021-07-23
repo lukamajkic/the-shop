@@ -17,19 +17,19 @@ namespace TheShop
             _articlePrice = articlePrice;
             _articleId = articleId;
         }
-        public bool ArticleInInventory(int id)
-        {
-            return _articleId == id;
-        }
 
         public Article GetArticle(int id)
         {
-            return new Article()
+            if (_articleId == id)
             {
-                ID = _articleId,
-                Name_of_article = "Article from supplier" + _supplierNumber,
-                ArticlePrice = _articlePrice
-            };
+                return new Article()
+                {
+                    ID = _articleId,
+                    Name_of_article = "Article from supplier" + _supplierNumber,
+                    ArticlePrice = _articlePrice
+                };
+            }
+            return null;
         }
     }
 }

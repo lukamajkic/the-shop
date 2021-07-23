@@ -17,5 +17,11 @@ namespace TheShop
 
         public DateTime SoldDate { get; set; }
         public int BuyerUserId { get; set; }
+        public void Sell(int buyerId)
+        {
+            SoldDate = DateTime.Now;
+            IsSold = true;
+            BuyerUserId = buyerId;
+        }
     }
 }
