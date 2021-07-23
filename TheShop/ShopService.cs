@@ -24,14 +24,14 @@ namespace TheShop
 
         public Article OrderArticle(int id, int maxExpectedPrice)
         {
-            var article = GetArticleIfAppropriate(_supplier1, id, maxExpectedPrice);
-            if (article != null)
-                return article;
-            article = GetArticleIfAppropriate(_supplier2, id, maxExpectedPrice);
-            if (article != null)
-                return article;
-            article = GetArticleIfAppropriate(_supplier3, id, maxExpectedPrice);
-            return article;
+            var suppliers = new List<Supplier>{ _supplier1, _supplier2, _supplier3 };         
+            foreach(var supplier in suppliers)
+            {
+                var article = GetArticleIfAppropriate(supplier, id, maxExpectedPrice);
+                if (article != null)
+                    return article;
+            }
+            return null;
         }
 
         public void SellArticle(int buyerId, Article article)
